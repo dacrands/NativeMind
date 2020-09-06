@@ -41,7 +41,7 @@ export default class App extends React.Component {
           onChangeText={(currItem) => this.setState({ currItem })}
           value={this.state.currItem}
         />
-        <Submit onPress={() => this.setState(state => {
+        <BigBtn onPress={() => this.setState(state => {
           if(state.currItem === '') {
             alert('Please enter a value');
             return;
@@ -56,12 +56,15 @@ export default class App extends React.Component {
           }
         })}>
           <SubmitText>Submit</SubmitText>
-        </Submit>
+        </BigBtn>
         <MainList 
           data={this.state.data}
           renderItem={this.renderItem}
           keyExtractor={item => item.id}
         />
+        <BigBtn>
+          <SubmitText>Clear List</SubmitText>
+        </BigBtn>
       </MainView>
     );
   }
@@ -100,16 +103,18 @@ const MainList = styled.FlatList`
   background: ${colors.veryDarkPurple};
   padding: 5px;
   border-radius: 5px;
+  margin-bottom: 10px;
 `
 
 const MainView = styled.View`
   background: ${colors.darkPurple};
   padding: 10px;
   padding-top: 50px;
+  padding-bottom: 80px;
   flex: 1;
 `
 
-const Submit = styled.TouchableOpacity`
+const BigBtn = styled.TouchableOpacity`
   background: orange;
   display: flex;
   align-items: center;
@@ -127,5 +132,8 @@ const SubmitText = styled.Text`
   font-weight: bold;
 `
 
+const ClearDataBtn = styled.TouchableOpacity`
+
+`
 
 
