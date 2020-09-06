@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, Button } from 'react-native'
 import styled  from 'styled-components/native'
+import _uniqueId from 'lodash/uniqueId';
 
 const colors = {
   /* Color Theme Swatches in Hex */
@@ -17,7 +18,9 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.renderItem = this.renderItem.bind(this);
+    this.textInput = React.createRef();
     this.state = {
+      currItem: "",
       data: 
       [
         {
@@ -38,14 +41,30 @@ export default class App extends React.Component {
   renderItem = ({ item }) => (
     <Item title={item.title} />
   )
+
+  addItem = ({ item }) => (
+    this.setState({ data: this.state.data.push(item) })
+  )
   render() {
     return (
       <MainView>
         <HeaderText>Gratitude</HeaderText>
         <Input
+          ref={this.textInput}
           placeholder="What are you thankful for"
+          onChangeText={(currItem) => this.setState({ currItem })}
+          value={this.state.currItem}
         />
-        <Submit>
+        <Submit onPress={() => this.setState(state => {
+          const data = this.state.data.concat({
+            id: _uniqueId(),
+            title: state.currItem,
+          })
+          return {
+            data,
+            currItem: ''
+          }
+        })}>
           <SubmitText>Submit</SubmitText>
         </Submit>
         <MainList 
@@ -88,10 +107,13 @@ const HeaderText = styled.Text`
 `
 
 const MainList = styled.FlatList`
+  background: ${colors.veryDarkPurple};
+  padding: 5px;
+  border-radius: 5px;
 `
 
 const MainView = styled.View`
-  background: ${colors.veryDarkPurple};
+  background: ${colors.darkPurple};
   padding: 10px;
   padding-top: 50px;
   flex: 1;
