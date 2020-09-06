@@ -1,5 +1,5 @@
 import React from 'react';
-import { Keyboard } from 'react-native'
+import { Keyboard, Alert } from 'react-native'
 import styled  from 'styled-components/native'
 import _uniqueId from 'lodash/uniqueId';
 
@@ -19,12 +19,30 @@ export default class App extends React.Component {
     super(props);
     this.renderItem = this.renderItem.bind(this);
     this.clearData = this.clearData.bind(this);
+    this.clearAlert = this.clearAlert.bind(this);
     this.textInput = React.createRef();
     this.state = {
       currItem: "",
       data: []
     }
   }
+
+  clearAlert = () => (
+    Alert.alert(
+    "Clear List",
+    "Are you sure you want to clear your list?",
+    [
+      {
+        text: "Cancel",
+        onPress: () => console.log("Cancel Pressed"),
+        style: "cancel"
+      },
+      { text: "OK", 
+        onPress: () => this.setState({ data: [] }) }
+    ],
+    { cancelable: false }
+  ))
+
   renderItem = ({ item }) => (
     <Item title={item.title} />
   )
@@ -32,9 +50,11 @@ export default class App extends React.Component {
   clearData = (() => (
     this.setState({ data: [] })
   ))
+
   addItem = ({ item }) => (
     this.setState({ data: this.state.data.push(item) })
   )
+
   render() {
     return (
       <MainView>
@@ -67,7 +87,7 @@ export default class App extends React.Component {
           renderItem={this.renderItem}
           keyExtractor={item => item.id}
         />
-        <BigBtn onPress={this.clearData}>
+        <BigBtn onPress={this.clearAlert}>
           <SubmitText>Clear List</SubmitText>
         </BigBtn>
       </MainView>
