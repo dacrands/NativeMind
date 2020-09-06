@@ -95,6 +95,10 @@ export default class App extends React.Component {
   }
 }
 
+const Item = ({ title }) => (
+  <ListText>{title}</ListText>
+);
+
 const Input = styled.TextInput`
   background: ${colors.veryLightPurple};
   height: 50px;
@@ -104,9 +108,7 @@ const Input = styled.TextInput`
   font-size: 18;
   color: white;
 `
-const Item = ({ title }) => (
-  <ListText>{title}</ListText>
-);
+
 
 const ListText = styled.Text`
   color: yellow;
@@ -157,8 +159,5 @@ const SubmitText = styled.Text`
   font-weight: bold;
 `
 
-const ClearDataBtn = styled.TouchableOpacity`
-
-`
 
 
