@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Button } from 'react-native'
+import { Keyboard } from 'react-native'
 import styled  from 'styled-components/native'
 import _uniqueId from 'lodash/uniqueId';
 
@@ -18,6 +18,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.renderItem = this.renderItem.bind(this);
+    this.clearData = this.clearData.bind(this);
     this.textInput = React.createRef();
     this.state = {
       currItem: "",
@@ -28,6 +29,9 @@ export default class App extends React.Component {
     <Item title={item.title} />
   )
 
+  clearData = (() => (
+    this.setState({ data: [] })
+  ))
   addItem = ({ item }) => (
     this.setState({ data: this.state.data.push(item) })
   )
@@ -42,6 +46,7 @@ export default class App extends React.Component {
           value={this.state.currItem}
         />
         <BigBtn onPress={() => this.setState(state => {
+          Keyboard.dismiss();
           if(state.currItem === '') {
             alert('Please enter a value');
             return;
@@ -62,7 +67,7 @@ export default class App extends React.Component {
           renderItem={this.renderItem}
           keyExtractor={item => item.id}
         />
-        <BigBtn>
+        <BigBtn onPress={this.clearData}>
           <SubmitText>Clear List</SubmitText>
         </BigBtn>
       </MainView>
