@@ -9,7 +9,6 @@ export default class App extends React.Component {
     super(props);
     this.renderItem = this.renderItem.bind(this);
     this.removeItem = this.removeItem.bind(this);
-    this.clearData = this.clearData.bind(this);
     this.clearAlert = this.clearAlert.bind(this);
     this.getData = this.getData.bind(this);
     this.storeData = this.storeData.bind(this);
@@ -72,8 +71,6 @@ export default class App extends React.Component {
   renderItem = ({ item }) => (
     <Item title={item.title} id={item.id} removeItem={this.removeItem} />
   );
-
-  clearData = () => this.setState({ data: [] });
 
   addItem = async () => {
     this.setState(state => {
