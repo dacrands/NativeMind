@@ -59,7 +59,12 @@ export default class App extends React.Component {
           onPress: () => console.log("Cancel Pressed"),
           style: "cancel"
         },
-        { text: "OK", onPress: () => this.setState({ data: [] }) }
+        { text: "OK", 
+          onPress: () => {
+            this.setState({ data: [] }) 
+            this.storeData("data", []);
+          }
+        }
       ],
       { cancelable: false }
     );
