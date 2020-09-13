@@ -9,7 +9,7 @@ export default class App extends React.Component {
     super(props);
     this.renderItem = this.renderItem.bind(this);
     this.removeItem = this.removeItem.bind(this);
-    this.clearAlert = this.clearAlert.bind(this);
+    this.clearData = this.clearData.bind(this);
     this.getData = this.getData.bind(this);
     this.storeData = this.storeData.bind(this);
     this.textInput = React.createRef();
@@ -48,7 +48,7 @@ export default class App extends React.Component {
     }
   };
 
-  clearAlert = () =>
+  clearData = () =>
     Alert.alert(
       "Clear List",
       "Are you sure you want to clear your list?",
@@ -115,7 +115,7 @@ export default class App extends React.Component {
           renderItem={this.renderItem}
           keyExtractor={item => item.id.toString()}
         />
-        <BigBtn onPress={this.clearAlert}>
+        <BigBtn onPress={this.clearData}>
           <SubmitText>Clear List</SubmitText>
         </BigBtn>
       </MainView>
