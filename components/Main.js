@@ -1,5 +1,5 @@
-import styled  from 'styled-components/native'
-import COLORS from '../assets/colors'
+import styled from "styled-components/native";
+import COLORS from "../assets/colors";
 
 const Header = styled.Text`
   text-align: center;
@@ -9,7 +9,7 @@ const Header = styled.Text`
   color: ${COLORS.lightPurple};
   font-size: 28;
   margin-bottom: 20px;
-`
+`;
 
 const Input = styled.TextInput`
   background: ${COLORS.veryLightPurple};
@@ -19,7 +19,7 @@ const Input = styled.TextInput`
   border-radius: 5px;
   font-size: 18;
   color: yellow;
-`
+`;
 
 const MainView = styled.View`
   background: ${COLORS.darkPurple};
@@ -27,7 +27,7 @@ const MainView = styled.View`
   padding-top: 50px;
   padding-bottom: 80px;
   flex: 1;
-`
+`;
 
 const BigBtn = styled.TouchableOpacity`
   background: orange;
@@ -36,7 +36,7 @@ const BigBtn = styled.TouchableOpacity`
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 20px;
-`
+`;
 
 const SubmitText = styled.Text`
   color: ${COLORS.purple};
@@ -45,6 +45,6 @@ const SubmitText = styled.Text`
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: bold;
-`
+`;
 
 export { Header, SubmitText, MainView, BigBtn, Input };
