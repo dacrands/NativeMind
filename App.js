@@ -1,8 +1,8 @@
 import React from 'react';
 import { Keyboard, Alert } from 'react-native'
-import _uniqueId from 'lodash/uniqueId';
 import { Header, SubmitText, MainView, BigBtn, Input } from './components/Main'
 import { ItemList, Item } from './components/ListItems'
+import AsyncStorage from '@react-native-community/async-storage';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -11,15 +11,43 @@ export default class App extends React.Component {
     this.removeItem = this.removeItem.bind(this);
     this.clearData = this.clearData.bind(this);
     this.clearAlert = this.clearAlert.bind(this);
+    this.getData = this.getData.bind(this);
+    this.storeData = this.storeData.bind(this);
     this.textInput = React.createRef();
     this.state = {
       currItem: "",
-      data: [
-        {title: "test",
-        id: 1234},
-        {title: "test2",
-        id: 1235},
-      ]
+      data: []
+    }
+  }
+
+  async componentDidMount() {
+    const currData = await this.getData('data') 
+    if(currData !== null) {
+      this.setState({ data: currData})
+      return
+    } else {
+      console.log('setting state')
+      this.storeData('data', [])
+    }
+  }
+
+
+  getData = async (key) => {
+    try {
+      const jsonValue = await AsyncStorage.getItem(key)
+      return jsonValue != null ? JSON.parse(jsonValue) : null
+    } catch(e) {
+      console.error(e)
+    }
+  }
+
+
+  storeData = async (key, value) => {
+    try {
+      const jsonValue = JSON.stringify(value)
+      await AsyncStorage.setItem(key, jsonValue)
+    } catch (e) {
+      console.log(e)
     }
   }
 
@@ -47,9 +75,25 @@ export default class App extends React.Component {
     this.setState({ data: [] })
   ))
 
-  addItem = ({ item }) => (
-    this.setState({ data: this.state.data.push(item) })
-  )
+  addItem = async () => {
+    this.setState(state => {
+      Keyboard.dismiss();
+      if(state.currItem === '') {
+        alert('Please enter a value')
+        return;
+      }
+      const data = this.state.data.concat({
+        id: new Date().getTime(),
+        title: state.currItem
+      })
+      // Set storage here to avoid race condition
+      this.storeData('data', data)
+      return {
+        data,
+        currItem: ''
+      }
+    })
+  }
 
   removeItem = ((id) => (
     this.setState({
@@ -67,21 +111,7 @@ export default class App extends React.Component {
           onChangeText={(currItem) => this.setState({ currItem })}
           value={this.state.currItem}
         />
-        <BigBtn onPress={() => this.setState(state => {
-          Keyboard.dismiss();
-          if(state.currItem === '') {
-            alert('Please enter a value');
-            return;
-          }
-          const data = this.state.data.concat({
-            id: _uniqueId(),
-            title: state.currItem,
-          })
-          return {
-            data,
-            currItem: ''
-          }
-        })}>
+        <BigBtn onPress={this.addItem}>
           <SubmitText>Submit</SubmitText>
         </BigBtn>
         <ItemList 
