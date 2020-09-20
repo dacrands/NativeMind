@@ -1,7 +1,7 @@
 import React from "react";
-import { Text } from "react-native";
+import { TouchableHighlight } from "react-native";
 import styled from "styled-components/native";
-
+import { Ionicons } from '@expo/vector-icons';
 
 const ItemList = styled.FlatList`
   border-radius: 5px;
@@ -15,26 +15,24 @@ const ListView = styled.View`
   flex-direction: row;
   background: rgba(255,255,255,0.7);
   margin-bottom: 5px;
-  padding: 8px;
+  padding: 12px 6px;
   border-radius: 5px;
 `;
 
 const ListText = styled.Text`
   color: rgba(0, 0, 0, 0.6);
-  flex-grow: 1;
+  width: 96%;
+  padding-right: 10;
+  line-height: 20;
 `;
 
-const CloseBtn = styled.TouchableHighlight`
-  color: yellow;
-  width: 20px;
-`;
 
 const Item = ({ title, id, removeItem }) => (
   <ListView>
     <ListText>{title}</ListText>
-    <CloseBtn onPress={() => removeItem(id)}>
-      <Text>{"\u274C"}</Text>
-    </CloseBtn>
+    <TouchableHighlight onPress={() => removeItem(id)}>
+      <Ionicons name="md-close" size={20} color="#11998e" />
+    </TouchableHighlight>
   </ListView>
 );
 
