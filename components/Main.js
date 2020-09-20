@@ -1,6 +1,5 @@
 import styled from "styled-components/native";
 
-import COLORS from "../assets/colors";
 
 const Header = styled.Text`
   text-align: center;
