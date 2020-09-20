@@ -2,24 +2,27 @@ import React from "react";
 import { Text } from "react-native";
 import styled from "styled-components/native";
 import COLORS from "../assets/colors";
+import { LinearGradient } from 'expo-linear-gradient';
+
 
 const ItemList = styled.FlatList`
-  background: ${COLORS.veryDarkPurple};
-  padding: 5px;
   border-radius: 5px;
   margin-bottom: 10px;
+  padding: 5px;
+  border: 1px solid rgba(255,255,255,0.7);
 `;
 
 const ListView = styled.View`
   display: flex;
   flex-direction: row;
-  background: ${COLORS.purple};
+  background: rgba(255,255,255,0.7);
   margin-bottom: 5px;
   padding: 8px;
+  border-radius: 5px;
 `;
 
 const ListText = styled.Text`
-  color: yellow;
+  color: rgba(0, 0, 0, 0.6);
   flex-grow: 1;
 `;
 

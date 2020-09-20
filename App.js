@@ -1,8 +1,9 @@
 import React from "react";
-import { Keyboard, Alert } from "react-native";
+import { Keyboard, Alert, View } from "react-native";
 import { Header, SubmitText, MainView, BigBtn, Input } from "./components/Main";
 import { ItemList, Item } from "./components/ListItems";
 import AsyncStorage from "@react-native-community/async-storage";
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -99,14 +100,26 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <MainView>
+      <LinearGradient colors={['#38ef7d', '#11998e']} style={{
+        padding: 10,
+        paddingTop: 50,
+        paddingBottom: 80,
+        flex: 1
+        }}>
         <Header>Gratitude</Header>
-        <Input
-          ref={this.textInput}
-          placeholder="What are you thankful for"
-          onChangeText={currItem => this.setState({ currItem })}
-          value={this.state.currItem}
-        />
+        <View style={{borderBottomColor: '#ffffff',
+                borderBottomWidth: 2,
+                marginBottom: 20,
+                marginLeft: 10,
+                marginRight: 10,
+                }}>
+          <Input
+            ref={this.textInput}
+            placeholder="What are you thankful for"
+            onChangeText={currItem => this.setState({ currItem })}
+            value={this.state.currItem}
+          />
+        </View>
         <BigBtn onPress={this.addItem}>
           <SubmitText>Submit</SubmitText>
         </BigBtn>
@@ -118,7 +131,7 @@ export default class App extends React.Component {
         <BigBtn onPress={this.clearData}>
           <SubmitText>Clear List</SubmitText>
         </BigBtn>
-      </MainView>
+      </LinearGradient>
     );
   }
 }

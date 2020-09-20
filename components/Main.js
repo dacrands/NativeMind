@@ -1,4 +1,5 @@
 import styled from "styled-components/native";
+
 import COLORS from "../assets/colors";
 
 const Header = styled.Text`
@@ -6,23 +7,22 @@ const Header = styled.Text`
   text-transform: uppercase;
   letter-spacing: 4px;
   font-weight: bold;
-  color: ${COLORS.lightPurple};
+  color: #ffffff;
   font-size: 28;
   margin-bottom: 20px;
 `;
 
-const Input = styled.TextInput`
-  background: ${COLORS.veryLightPurple};
+const Input = styled.TextInput.attrs({
+  placeholderTextColor: 'rgba(255,255,255,0.8)'
+})`
   height: 50px;
-  margin-bottom: 10px;
-  padding: 10px;
+  padding: 12px 0;
   border-radius: 5px;
   font-size: 18;
-  color: yellow;
+  color: #ffffff;
 `;
 
 const MainView = styled.View`
-  background: ${COLORS.darkPurple};
   padding: 10px;
   padding-top: 50px;
   padding-bottom: 80px;
@@ -30,7 +30,7 @@ const MainView = styled.View`
 `;
 
 const BigBtn = styled.TouchableOpacity`
-  background: orange;
+  background: rgba(255,255,255,0.4);
   display: flex;
   align-items: center;
   padding: 10px;
@@ -39,7 +39,7 @@ const BigBtn = styled.TouchableOpacity`
 `;
 
 const SubmitText = styled.Text`
-  color: ${COLORS.purple};
+  color: #ffffff;
   font-size: 18;
   text-align: center;
   text-transform: uppercase;
