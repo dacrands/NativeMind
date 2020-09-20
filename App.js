@@ -117,6 +117,7 @@ export default class App extends React.Component {
             ref={this.textInput}
             placeholder="What are you thankful for"
             onChangeText={currItem => this.setState({ currItem })}
+            onSubmitEditing={this.addItem}
             value={this.state.currItem}
           />
         </View>
