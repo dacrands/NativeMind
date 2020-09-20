@@ -8,7 +8,6 @@ const Header = styled.Text`
   font-weight: bold;
   color: #ffffff;
   font-size: 28;
-  margin-bottom: 20px;
 `;
 
 const Input = styled.TextInput.attrs({
