@@ -101,7 +101,6 @@ class HomeScreen extends React.Component {
       });
   
     render() {
-      const { navigation } = this.props;
       return (
         <LinearGradient colors={['#38ef7d', '#11998e']} style={{
           padding: 10,
@@ -140,7 +139,5 @@ class HomeScreen extends React.Component {
   }
 
   export default function(props) {
-    const navigation = useNavigation();
-  
-    return <HomeScreen {...props} navigation={navigation} />;
+    return <HomeScreen {...props} />;
   }
