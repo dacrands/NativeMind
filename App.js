@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Profile from "./components/Profile"
+import SavedLists from "./components/SavedLists"
 import { TouchableHighlight } from "react-native"
 import { Header } from "./components/Main"
 import HomeScreen from "./components/Home"
@@ -35,7 +35,7 @@ const App = () => {
         />
         <Stack.Screen 
           name="Saved Lists"
-          component={Profile}
+          component={SavedLists}
           options={{ title: 'Saved Lists' }}
         />
       </Stack.Navigator>
