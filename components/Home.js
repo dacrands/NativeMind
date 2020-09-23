@@ -1,5 +1,5 @@
 import React from 'react';
-import { Keyboard, Alert, View, TouchableHighlight } from "react-native";
+import { Keyboard, Alert, View } from "react-native";
 import { SubmitText, BigBtn, Input } from "./Main";
 import { ItemList, Item } from "./ListItems";
 import { LinearGradient } from 'expo-linear-gradient';
@@ -63,9 +63,7 @@ export default class HomeScreen extends React.Component {
           date: new Date().toString(),
           data: this.state.data
         })
-        console.log("testing 2")
         await storeData("lists", newLists)
-        console.log(await getData("lists"))
       }
   
     renderItem = ({ item }) => (
