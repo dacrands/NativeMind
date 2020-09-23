@@ -1,20 +1,18 @@
 import React from 'react';
-import { Keyboard, Alert, View } from "react-native";
+import { Keyboard, Alert, View, TouchableHighlight } from "react-native";
 import { SubmitText, BigBtn, Input } from "./Main";
 import { ItemList, Item } from "./ListItems";
-import AsyncStorage from "@react-native-community/async-storage";
 import { LinearGradient } from 'expo-linear-gradient';
-import { useNavigation } from '@react-navigation/native';
+import { getData, storeData } from '../common/storage'
 
 
-class HomeScreen extends React.Component {
+export default class HomeScreen extends React.Component {
     constructor(props) {
       super(props);
       this.renderItem = this.renderItem.bind(this);
       this.removeItem = this.removeItem.bind(this);
       this.clearData = this.clearData.bind(this);
-      this.getData = this.getData.bind(this);
-      this.storeData = this.storeData.bind(this);
+      this.storeList = this.storeList.bind(this);
       this.textInput = React.createRef();
       this.state = {
         currItem: "",
@@ -23,34 +21,16 @@ class HomeScreen extends React.Component {
     }
   
     async componentDidMount() {
-      const currData = await this.getData("data");
+      const currData = await getData("data");
       if (currData !== null) {
         this.setState({ data: currData });
         return;
       } else {
         console.log("setting state");
-        this.storeData("data", []);
+        storeData("data", []);
       }
     }
-  
-    getData = async key => {
-      try {
-        const jsonValue = await AsyncStorage.getItem(key);
-        return jsonValue != null ? JSON.parse(jsonValue) : null;
-      } catch (e) {
-        console.error(e);
-      }
-    };
-  
-    storeData = async (key, value) => {
-      try {
-        const jsonValue = JSON.stringify(value);
-        await AsyncStorage.setItem(key, jsonValue);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-  
+    
     clearData = () =>
       Alert.alert(
         "Clear List",
@@ -64,12 +44,29 @@ class HomeScreen extends React.Component {
           { text: "OK", 
             onPress: () => {
               this.setState({ data: [] }) 
-              this.storeData("data", []);
+              storeData("data", []);
             }
           }
         ],
         { cancelable: false }
       );
+
+      storeList = async () => {
+        console.log("testing")
+        let currLists = await getData("lists");
+        if (currLists === null) {
+          storeData("lists", [])
+        }
+        currLists = await getData("lists");
+        const newLists = currLists.concat({
+          id: "list-" + new Date().getTime(),
+          date: new Date().toString(),
+          data: this.state.data
+        })
+        console.log("testing 2")
+        await storeData("lists", newLists)
+        console.log(await getData("lists"))
+      }
   
     renderItem = ({ item }) => (
       <Item title={item.title} id={item.id} removeItem={this.removeItem} />
@@ -87,7 +84,7 @@ class HomeScreen extends React.Component {
           title: state.currItem
         });
         // Set storage here to avoid race condition
-        this.storeData("data", data);
+        storeData("data", data);
         return {
           data,
           currItem: ""
@@ -105,7 +102,7 @@ class HomeScreen extends React.Component {
         <LinearGradient colors={['#38ef7d', '#11998e']} style={{
           padding: 10,
           paddingTop: 10,
-          paddingBottom: 80,
+          paddingBottom: 20,
           flex: 1
           }}>
           <View style={{borderBottomColor: '#ffffff',
@@ -116,7 +113,7 @@ class HomeScreen extends React.Component {
                   }}>
             <Input
               ref={this.textInput}
-              placeholder="What are you thankful for"
+              placeholder="What are you thankful for?"
               onChangeText={currItem => this.setState({ currItem })}
               onSubmitEditing={this.addItem}
               value={this.state.currItem}
@@ -130,14 +127,18 @@ class HomeScreen extends React.Component {
             renderItem={this.renderItem}
             keyExtractor={item => item.id.toString()}
           />
-          <BigBtn onPress={this.clearData}>
+          <BigBtn style={{
+              alignItems: 'center',
+              marginTop: 10
+            }}
+            onPress={this.storeList}
+          >
+            <SubmitText>Save List</SubmitText>
+          </BigBtn>
+          <BigBtn style={{ backgroundColor: 'rgba(235, 184, 29, 0.9)' }} onPress={this.clearData}>
             <SubmitText>Clear List</SubmitText>
           </BigBtn>
         </LinearGradient>
       );
     }
-  }
-
-  export default function(props) {
-    return <HomeScreen {...props} />;
   }
