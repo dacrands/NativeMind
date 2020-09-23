@@ -23,7 +23,7 @@ const App = () => {
             },
             headerRight: () => (
               <TouchableHighlight
-                onPress={() => navigation.navigate('Profile')}
+                onPress={() => navigation.navigate('Saved Lists')}
                 title="Info"
                 color="#fff"
                 style={{ paddingRight:10 }}
@@ -34,9 +34,9 @@ const App = () => {
            })}
         />
         <Stack.Screen 
-          name="Profile"
+          name="Saved Lists"
           component={Profile}
-          options={{ title: 'Profile' }}
+          options={{ title: 'Saved Lists' }}
         />
       </Stack.Navigator>
     </NavigationContainer>
