@@ -23,7 +23,6 @@ const Input = styled.TextInput.attrs({
 const MainView = styled.View`
   padding: 10px;
   padding-top: 50px;
-  padding-bottom: 80px;
   flex: 1;
 `;
 
