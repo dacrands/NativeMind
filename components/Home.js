@@ -2,7 +2,6 @@ import React from 'react';
 import { Keyboard, Alert, View } from "react-native";
 import { SubmitText, BigBtn, Input } from "./Main";
 import { ItemList, Item } from "./ListItems";
-import { LinearGradient } from 'expo-linear-gradient';
 import { getData, storeData } from '../common/storage'
 
 
@@ -97,11 +96,13 @@ export default class HomeScreen extends React.Component {
   
     render() {
       return (
-        <LinearGradient colors={['#38ef7d', '#11998e']} style={{
-          padding: 10,
-          paddingTop: 10,
-          paddingBottom: 20,
-          flex: 1
+        <View
+          style={{
+            padding: 10,
+            paddingTop: 10,
+            paddingBottom: 20,
+            flex: 1,
+            backgroundColor: '#38ef7d'
           }}>
           <View style={{borderBottomColor: '#ffffff',
                   borderBottomWidth: 2,
@@ -136,7 +137,7 @@ export default class HomeScreen extends React.Component {
           <BigBtn style={{ backgroundColor: 'rgba(235, 184, 29, 0.9)' }} onPress={this.clearData}>
             <SubmitText>Clear List</SubmitText>
           </BigBtn>
-        </LinearGradient>
+        </View>
       );
     }
   }
