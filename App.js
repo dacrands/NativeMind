@@ -1,6 +1,6 @@
 import * as React from 'react';
 import SavedLists from "./components/SavedLists"
-import { TouchableHighlight } from "react-native"
+import { TouchableHighlight, Text } from "react-native"
 import { Header } from "./components/Main"
 import HomeScreen from "./components/HomeScreen"
 import { NavigationContainer } from '@react-navigation/native';
@@ -24,7 +24,7 @@ const App = () => {
             headerRight: () => (
               <TouchableHighlight
                 onPress={() => navigation.navigate('Saved Lists')}
-                title="Info"
+                title="Saved Lists"
                 color="#fff"
                 style={{ paddingRight:10 }}
               >
@@ -36,7 +36,21 @@ const App = () => {
         <Stack.Screen 
           name="Saved Lists"
           component={SavedLists}
-          options={{ title: 'Saved Lists' }}
+          options={({ navigation }) => ({
+            headerTitle: () => <Header>Saved Lists</Header>,
+            headerStyle: {
+              backgroundColor: '#38ef7d'
+            },
+            headerLeft: () => (
+              <TouchableHighlight
+                onPress={() => navigation.navigate('Home')}
+                title="Home"
+                style={{ paddingLeft:10 }}
+              >
+                <Ionicons name="md-home" size={32} color="white" />
+              </TouchableHighlight>
+            )
+          })}
         />
       </Stack.Navigator>
     </NavigationContainer>
