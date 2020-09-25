@@ -36,4 +36,4 @@ const Item = ({ title, id, removeItem }) => (
   </ListView>
 );
 
-export { ItemList, Item };
+export { ItemList, Item, ListView, ListText };
