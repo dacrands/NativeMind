@@ -1,5 +1,7 @@
 import React from 'react';
-import { Text, View, FlatList, TouchableHighlight, Alert } from "react-native";
+import { View, FlatList, Alert } from "react-native";
+import { BigBtn, SubmitText } from "./Main";
+import { ItemList, ListView, ListText } from "./ListItems";
 import { getData, storeData } from '../common/storage'
 
 
@@ -49,8 +51,8 @@ export default class SavedLists extends React.Component  {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <FlatList
+      <View style={{ flex: 1, backgroundColor: '#38ef7d', padding: 10 }}>
+        <ItemList
           data={this.state.lists}
           renderItem={({item}) => <RenderLists title={item.date} list={item.data} id={item.id} removeList={this.removeList} />}
           keyExtractor={item => item.id}
@@ -61,18 +63,21 @@ export default class SavedLists extends React.Component  {
 }
 
 const RenderLists = (props) => (
-  <View style={{ padding: 20, margin: 5, borderColor: 'black', borderWidth: 1 }}>
-    <Text style={{ fontWeight: 'bold', marginBottom: 16 }}>{props.title}</Text>
+  <ListView style={{ margin: 5, flexDirection: 'column', padding: 20}}>
+    <ListText style={{ fontWeight: 'bold', marginBottom: 16 }}>{props.title}</ListText>
     <FlatList
       data={props.list}
-      renderItem={({item}) => <Text style={{ marginBottom: 8 }}>{item.title}</Text>}
+      renderItem={({item, index}) => 
+        <ListText style={{ marginBottom: 8 }}>
+          {index + 1}). {item.title}
+        </ListText>}
       keyExtractor={item => item.id.toString()}
     /> 
-    <TouchableHighlight 
+    <BigBtn
       onPress={() => props.removeList(props.id)}
-      style={{ backgroundColor: 'red', marginTop: 10, padding: 10}}
+      style={{ backgroundColor: 'rgba(235, 184, 29, 0.9)', marginBottom: 0, marginTop: 15 }}
     >
-      <Text style={{ color: 'white', textAlign: 'center'}}>{props.id}</Text>
-    </TouchableHighlight>
-  </View>
+      <SubmitText style={{ fontSize: 12}}>Delete List</SubmitText>
+    </BigBtn>
+  </ListView>
 )
