@@ -32,7 +32,11 @@ class HomeScreen extends React.Component {
       }
     }
     
-    clearData = () =>
+    clearData = () => {
+      if (this.state.data.length < 1) {
+        alert("You don't have any items in your list")
+        return
+      }
       Alert.alert(
         "Clear List",
         "Are you sure you want to clear your list?",
@@ -51,8 +55,13 @@ class HomeScreen extends React.Component {
         ],
         { cancelable: false }
       );
+    }
 
       storeList = async () => {
+        if (this.state.data.length < 1) {
+          alert("You don't have any items in your list")
+          return
+        }
         let currLists = await getData("lists");
         if (currLists === null) {
           storeData("lists", [])
