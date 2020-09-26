@@ -15,7 +15,7 @@ const ListView = styled.View`
   flex-direction: row;
   background: rgba(255,255,255,0.7);
   margin-bottom: 5px;
-  padding: 12px 6px;
+  padding: 12px;
   border-radius: 5px;
 `;
 
