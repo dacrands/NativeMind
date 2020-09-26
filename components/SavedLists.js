@@ -64,7 +64,7 @@ export default class SavedLists extends React.Component  {
 
 const RenderLists = (props) => (
   <ListView style={{ margin: 5, flexDirection: 'column', padding: 20}}>
-    <ListText style={{ fontWeight: 'bold', marginBottom: 16 }}>{props.title}</ListText>
+    <ListText style={{ fontWeight: 'bold', fontSize: 18, marginBottom: 16 }}>{props.title}</ListText>
     <FlatList
       data={props.list}
       renderItem={({item, index}) => 
