@@ -9,7 +9,7 @@ export default class SavedLists extends React.Component {
     super(props);
     this.removeList = this.removeList.bind(this);
     this.state = {
-      lists: []
+      lists: [],
     };
   }
 
@@ -24,7 +24,7 @@ export default class SavedLists extends React.Component {
     }
   }
 
-  removeList = id => {
+  removeList = (id) => {
     Alert.alert(
       "Delete List",
       "Are you sure you want to delete this list?",
@@ -32,17 +32,17 @@ export default class SavedLists extends React.Component {
         {
           text: "Cancel",
           onPress: () => console.log("Cancel delete list"),
-          style: "cancel"
+          style: "cancel",
         },
         {
           text: "OK",
           onPress: () => {
             this.setState({
-              lists: this.state.lists.filter(list => list.id != id)
+              lists: this.state.lists.filter((list) => list.id != id),
             });
             storeData("lists", this.state.lists);
-          }
-        }
+          },
+        },
       ],
       { cancelable: false }
     );
@@ -61,14 +61,14 @@ export default class SavedLists extends React.Component {
               removeList={this.removeList}
             />
           )}
-          keyExtractor={item => item.id}
+          keyExtractor={(item) => item.id}
         />
       </View>
     );
   }
 }
 
-const RenderLists = props => (
+const RenderLists = (props) => (
   <ListView style={{ margin: 5, flexDirection: "column" }}>
     <ListText style={{ fontWeight: "bold", fontSize: 18, marginBottom: 16 }}>
       {props.title}
@@ -80,14 +80,14 @@ const RenderLists = props => (
           {index + 1}). {item.title}
         </ListText>
       )}
-      keyExtractor={item => item.id.toString()}
+      keyExtractor={(item) => item.id.toString()}
     />
     <BigBtn
       onPress={() => props.removeList(props.id)}
       style={{
         backgroundColor: "rgba(235, 184, 29, 0.9)",
         marginBottom: 0,
-        marginTop: 15
+        marginTop: 15,
       }}
     >
       <SubmitText style={{ fontSize: 12 }}>Delete List</SubmitText>

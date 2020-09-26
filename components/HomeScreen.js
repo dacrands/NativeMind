@@ -16,7 +16,7 @@ class HomeScreen extends React.Component {
     this.textInput = React.createRef();
     this.state = {
       currItem: "",
-      data: []
+      data: [],
     };
   }
 
@@ -43,15 +43,15 @@ class HomeScreen extends React.Component {
         {
           text: "Cancel",
           onPress: () => console.log("Cancel Pressed"),
-          style: "cancel"
+          style: "cancel",
         },
         {
           text: "OK",
           onPress: () => {
             this.setState({ data: [] });
             storeData("data", []);
-          }
-        }
+          },
+        },
       ],
       { cancelable: false }
     );
@@ -71,8 +71,8 @@ class HomeScreen extends React.Component {
       {
         id: "list-" + new Date().getTime(),
         date: moment().format("MMMM Do YYYY, h:mm:ss a"),
-        data: this.state.data
-      }
+        data: this.state.data,
+      },
     ].concat(currLists);
     await storeData("lists", newLists);
     this.props.navigation.navigate("Saved Lists");
@@ -83,7 +83,7 @@ class HomeScreen extends React.Component {
   );
 
   addItem = async () => {
-    this.setState(state => {
+    this.setState((state) => {
       Keyboard.dismiss();
       if (state.currItem === "") {
         alert("Please enter a value");
@@ -91,20 +91,20 @@ class HomeScreen extends React.Component {
       }
       const data = this.state.data.concat({
         id: new Date().getTime(),
-        title: state.currItem
+        title: state.currItem,
       });
       // Set storage here to avoid race condition
       storeData("data", data);
       return {
         data,
-        currItem: ""
+        currItem: "",
       };
     });
   };
 
-  removeItem = id =>
+  removeItem = (id) =>
     this.setState({
-      data: this.state.data.filter(item => item.id != id)
+      data: this.state.data.filter((item) => item.id != id),
     });
 
   render() {
@@ -116,13 +116,13 @@ class HomeScreen extends React.Component {
             borderBottomWidth: 2,
             marginBottom: 20,
             marginLeft: 10,
-            marginRight: 10
+            marginRight: 10,
           }}
         >
           <Input
             ref={this.textInput}
             placeholder="What are you thankful for?"
-            onChangeText={currItem => this.setState({ currItem })}
+            onChangeText={(currItem) => this.setState({ currItem })}
             onSubmitEditing={this.addItem}
             value={this.state.currItem}
           />
@@ -133,12 +133,12 @@ class HomeScreen extends React.Component {
         <ItemList
           data={this.state.data}
           renderItem={this.renderItem}
-          keyExtractor={item => item.id.toString()}
+          keyExtractor={(item) => item.id.toString()}
         />
         <BigBtn
           style={{
             alignItems: "center",
-            marginTop: 10
+            marginTop: 10,
           }}
           onPress={this.storeList}
         >
@@ -155,7 +155,7 @@ class HomeScreen extends React.Component {
   }
 }
 
-export default function(props) {
+export default function (props) {
   const navigation = useNavigation();
   return <HomeScreen {...props} navigation={navigation} />;
 }

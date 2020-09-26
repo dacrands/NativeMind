@@ -10,7 +10,7 @@ const Header = styled.Text`
 `;
 
 const Input = styled.TextInput.attrs({
-  placeholderTextColor: "rgba(255,255,255,0.8)"
+  placeholderTextColor: "rgba(255,255,255,0.8)",
 })`
   height: 50px;
   padding: 12px 0;
