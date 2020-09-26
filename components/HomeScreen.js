@@ -58,11 +58,11 @@ class HomeScreen extends React.Component {
           storeData("lists", [])
         }
         currLists = await getData("lists");
-        const newLists = currLists.concat({
+        const newLists = [{
           id: "list-" + new Date().getTime(),
           date: moment().format('MMMM Do YYYY, h:mm:ss a'),
           data: this.state.data
-        })
+        }].concat(currLists)
         await storeData("lists", newLists)
         this.props.navigation.navigate('Saved Lists')
       }
