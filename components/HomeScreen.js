@@ -2,8 +2,8 @@ import React from 'react';
 import moment from 'moment';
 import { useNavigation } from '@react-navigation/native';
 import { Keyboard, Alert, View } from "react-native";
-import { MainView, SubmitText, BigBtn, Input } from "./Main";
-import { ItemList, Item } from "./ListItems";
+import { MainView, SubmitText, BigBtn, Input } from "../styles/Main";
+import { ItemList, Item } from "../styles/ListItems";
 import { getData, storeData } from '../common/storage'
 
 

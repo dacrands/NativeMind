@@ -1,7 +1,7 @@
 import * as React from 'react';
 import SavedLists from "./components/SavedLists"
 import { TouchableHighlight, Text } from "react-native"
-import { Header } from "./components/Main"
+import { Header } from "./styles/Main"
 import HomeScreen from "./components/HomeScreen"
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';

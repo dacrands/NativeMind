@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, FlatList, Alert } from "react-native";
-import { BigBtn, SubmitText } from "./Main";
-import { ItemList, ListView, ListText } from "./ListItems";
+import { BigBtn, SubmitText } from "../styles/Main";
+import { ItemList, ListView, ListText } from "../styles/ListItems";
 import { getData, storeData } from '../common/storage'
 
 
