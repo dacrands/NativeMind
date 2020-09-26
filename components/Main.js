@@ -21,9 +21,10 @@ const Input = styled.TextInput.attrs({
 `;
 
 const MainView = styled.View`
-  padding: 10px;
-  padding-top: 50px;
   flex: 1;
+  padding: 10px;
+  padding-bottom: 20px;
+  background: #38ef7d;
 `;
 
 const BigBtn = styled.TouchableOpacity`
