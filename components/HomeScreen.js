@@ -1,12 +1,13 @@
 import React from 'react';
 import moment from 'moment';
+import { useNavigation } from '@react-navigation/native';
 import { Keyboard, Alert, View } from "react-native";
 import { SubmitText, BigBtn, Input } from "./Main";
 import { ItemList, Item } from "./ListItems";
 import { getData, storeData } from '../common/storage'
 
 
-export default class HomeScreen extends React.Component {
+class HomeScreen extends React.Component {
     constructor(props) {
       super(props);
       this.renderItem = this.renderItem.bind(this);
@@ -63,6 +64,7 @@ export default class HomeScreen extends React.Component {
           data: this.state.data
         })
         await storeData("lists", newLists)
+        this.props.navigation.navigate('Saved Lists')
       }
   
     renderItem = ({ item }) => (
@@ -141,3 +143,8 @@ export default class HomeScreen extends React.Component {
       );
     }
   }
+
+export default function(props) {
+  const navigation = useNavigation();	    
+  return <HomeScreen {...props} navigation={navigation} />;
+}
