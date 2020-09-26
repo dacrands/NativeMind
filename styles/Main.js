@@ -1,6 +1,5 @@
 import styled from "styled-components/native";
 
-
 const Header = styled.Text`
   text-align: center;
   text-transform: uppercase;
@@ -11,7 +10,7 @@ const Header = styled.Text`
 `;
 
 const Input = styled.TextInput.attrs({
-  placeholderTextColor: 'rgba(255,255,255,0.8)'
+  placeholderTextColor: "rgba(255,255,255,0.8)"
 })`
   height: 50px;
   padding: 12px 0;
@@ -28,7 +27,7 @@ const MainView = styled.View`
 `;
 
 const BigBtn = styled.TouchableOpacity`
-  background: rgba(255,255,255,0.4);
+  background: rgba(255, 255, 255, 0.4);
   display: flex;
   align-items: center;
   padding: 10px;

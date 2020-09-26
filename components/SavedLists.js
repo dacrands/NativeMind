@@ -1,11 +1,10 @@
-import React from 'react';
+import React from "react";
 import { View, FlatList, Alert } from "react-native";
 import { BigBtn, SubmitText } from "../styles/Main";
 import { ItemList, ListView, ListText } from "../styles/ListItems";
-import { getData, storeData } from '../common/storage'
+import { getData, storeData } from "../common/storage";
 
-
-export default class SavedLists extends React.Component  {
+export default class SavedLists extends React.Component {
   constructor(props) {
     super(props);
     this.removeList = this.removeList.bind(this);
@@ -40,44 +39,58 @@ export default class SavedLists extends React.Component  {
           onPress: () => {
             this.setState({
               lists: this.state.lists.filter(list => list.id != id)
-            })
-            storeData("lists", this.state.lists)
+            });
+            storeData("lists", this.state.lists);
           }
         }
       ],
       { cancelable: false }
-    )
-  }
+    );
+  };
 
   render() {
     return (
-      <View style={{ flex: 1, backgroundColor: '#38ef7d', padding: 10 }}>
+      <View style={{ flex: 1, backgroundColor: "#38ef7d", padding: 10 }}>
         <ItemList
           data={this.state.lists}
-          renderItem={({item}) => <RenderLists title={item.date} list={item.data} id={item.id} removeList={this.removeList} />}
+          renderItem={({ item }) => (
+            <RenderLists
+              title={item.date}
+              list={item.data}
+              id={item.id}
+              removeList={this.removeList}
+            />
+          )}
           keyExtractor={item => item.id}
         />
       </View>
-    )
+    );
   }
 }
 
-const RenderLists = (props) => (
-  <ListView style={{ margin: 5, flexDirection: 'column' }}>
-    <ListText style={{ fontWeight: 'bold', fontSize: 18, marginBottom: 16 }}>{props.title}</ListText>
+const RenderLists = props => (
+  <ListView style={{ margin: 5, flexDirection: "column" }}>
+    <ListText style={{ fontWeight: "bold", fontSize: 18, marginBottom: 16 }}>
+      {props.title}
+    </ListText>
     <FlatList
       data={props.list}
-      renderItem={({item, index}) => 
+      renderItem={({ item, index }) => (
         <ListText style={{ marginBottom: 8 }}>
           {index + 1}). {item.title}
-        </ListText>}
+        </ListText>
+      )}
       keyExtractor={item => item.id.toString()}
-    /> 
+    />
     <BigBtn
       onPress={() => props.removeList(props.id)}
-      style={{ backgroundColor: 'rgba(235, 184, 29, 0.9)', marginBottom: 0, marginTop: 15 }}
+      style={{
+        backgroundColor: "rgba(235, 184, 29, 0.9)",
+        marginBottom: 0,
+        marginTop: 15
+      }}
     >
-      <SubmitText style={{ fontSize: 12}}>Delete List</SubmitText>
+      <SubmitText style={{ fontSize: 12 }}>Delete List</SubmitText>
     </BigBtn>
   </ListView>
-)
+);
