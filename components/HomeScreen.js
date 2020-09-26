@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { Keyboard, Alert, View } from "react-native";
 import { SubmitText, BigBtn, Input } from "./Main";
 import { ItemList, Item } from "./ListItems";
@@ -59,7 +60,7 @@ export default class HomeScreen extends React.Component {
         currLists = await getData("lists");
         const newLists = currLists.concat({
           id: "list-" + new Date().getTime(),
-          date: new Date().toString(),
+          date: moment().format('MMMM Do YYYY, h:mm:ss a'),
           data: this.state.data
         })
         await storeData("lists", newLists)
