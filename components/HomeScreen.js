@@ -52,7 +52,6 @@ export default class HomeScreen extends React.Component {
       );
 
       storeList = async () => {
-        console.log("testing")
         let currLists = await getData("lists");
         if (currLists === null) {
           storeData("lists", [])
