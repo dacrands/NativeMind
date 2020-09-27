@@ -2,9 +2,10 @@ import React from "react";
 import moment from "moment";
 import { useNavigation } from "@react-navigation/native";
 import { Keyboard, Alert, View } from "react-native";
-import { MainView, SubmitText, BigBtn, Input } from "../styles/Main";
+import { MainView, SubmitText, BigBtn, Input, CircleBtn } from "../styles/Main";
 import { ItemList, Item } from "../styles/ListItems";
 import { getData, storeData } from "../common/storage";
+import { Ionicons } from "@expo/vector-icons";
 
 class HomeScreen extends React.Component {
   constructor(props) {
@@ -127,9 +128,9 @@ class HomeScreen extends React.Component {
             value={this.state.currItem}
           />
         </View>
-        <BigBtn onPress={this.addItem}>
-          <SubmitText>Submit</SubmitText>
-        </BigBtn>
+        <CircleBtn onPress={this.addItem}>
+          <Ionicons name="ios-add" size={40} color="#11998e" />
+        </CircleBtn>
         <ItemList
           data={this.state.data}
           renderItem={this.renderItem}
