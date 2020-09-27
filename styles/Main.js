@@ -35,6 +35,20 @@ const BigBtn = styled.TouchableOpacity`
   margin-bottom: 20px;
 `;
 
+const CircleBtn = styled.TouchableOpacity`
+  background: rgba(255, 255, 255, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50;
+`;
+
 const SubmitText = styled.Text`
   color: #ffffff;
   font-size: 18;
@@ -44,4 +58,4 @@ const SubmitText = styled.Text`
   font-weight: bold;
 `;
 
-export { Header, SubmitText, MainView, BigBtn, Input };
+export { Header, SubmitText, MainView, BigBtn, Input, CircleBtn };
