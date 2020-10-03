@@ -71,7 +71,7 @@ class HomeScreen extends React.Component {
     const newLists = [
       {
         id: "list-" + new Date().getTime(),
-        date: moment().format("MMMM Do YYYY, h:mm:ss a"),
+        date: moment().format("MMMM Do YYYY, h:mm a"),
         data: this.state.data,
       },
     ].concat(currLists);
