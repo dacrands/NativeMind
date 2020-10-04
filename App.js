@@ -1,8 +1,8 @@
 import * as React from 'react';
-import SavedLists from "./components/SavedLists"
+import SavedLists from "./src/components/SavedLists"
 import { TouchableHighlight, Text } from "react-native"
-import { Header } from "./styles/Main"
-import HomeScreen from "./components/HomeScreen"
+import { Header } from "./src/styles/Main"
+import HomeScreen from "./src/components/HomeScreen"
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Ionicons } from '@expo/vector-icons';
