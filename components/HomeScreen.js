@@ -27,7 +27,6 @@ class HomeScreen extends React.Component {
       this.setState({ data: currData });
       return;
     } else {
-      console.log("setting state");
       storeData("data", []);
     }
   }
