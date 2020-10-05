@@ -28,7 +28,7 @@ describe('<HomeScreen />', () => {
         expect(currItem).toEqual('test');
     });
 
-    it('Should add a new item to state.data', async () => {
+    it('Should add a new item to state.data on btn press', async () => {
         const component = mount(<HomeScreen/>)
         const testTitle = 'test'
 
