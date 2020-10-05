@@ -7,7 +7,7 @@ import { ItemList, Item } from "../styles/ListItems";
 import { getData, storeData } from "../common/storage";
 import { Ionicons } from "@expo/vector-icons";
 
-class HomeScreen extends React.Component {
+export class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
     this.renderItem = this.renderItem.bind(this);
