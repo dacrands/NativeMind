@@ -1,7 +1,9 @@
 node_modules/**/*
 .expo/*
 npm-debug.*
+coverage
 *.jks
 *.p12
 *.key
 *.mobileprovision
+
