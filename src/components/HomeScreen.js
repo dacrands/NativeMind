@@ -127,7 +127,7 @@ export class HomeScreen extends React.Component {
             value={this.state.currItem}
           />
         </View>
-        <CircleBtn onPress={this.addItem}>
+        <CircleBtn id="add-item-btn" onPress={this.addItem}>
           <Ionicons name="ios-add" size={40} color="#11998e" />
         </CircleBtn>
         <ItemList
