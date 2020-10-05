@@ -13,6 +13,8 @@
     "transformIgnorePatterns": [
       "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|@sentry/.*)"
     ],
+    "testEnvironment": "jsdom",
+    "setupTestFrameworkScriptFile": "<rootDir>/test-setup.js",
     "collectCoverage": true,
     "collectCoverageFrom": [
       "**/*.{js,jsx}",
@@ -40,8 +42,11 @@
   },
   "devDependencies": {
     "babel-preset-expo": "^8.3.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
     "jest-expo": "^39.0.0",
     "prettier": "2.1.1",
+    "react-dom": "^16.14.0",
     "react-test-renderer": "^16.13.1"
   },
   "private": true
