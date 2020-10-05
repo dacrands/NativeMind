@@ -32,11 +32,7 @@ describe('<HomeScreen />', () => {
         const component = mount(<HomeScreen/>)
         const testTitle = 'test'
 
-        component
-            .find('TextInput')
-            .hostNodes()
-            .props()
-            .onChangeText(testTitle)
+        component.setState({ currItem : testTitle })
 
         component
             .find('#add-item-btn')
