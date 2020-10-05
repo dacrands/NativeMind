@@ -27,4 +27,23 @@ describe('<HomeScreen />', () => {
         const currItem = component.find(HomeScreen).state().currItem;
         expect(currItem).toEqual('test');
     });
+
+    it('Should add a new item to state.data', async () => {
+        const component = mount(<HomeScreen/>)
+        const testTitle = 'test'
+
+        component
+            .find('TextInput')
+            .hostNodes()
+            .props()
+            .onChangeText(testTitle)
+
+        component
+            .find('#add-item-btn')
+            .at(1)
+            .props()
+            .onPress()
+
+        expect(component.find(HomeScreen).state().data[0].title).toEqual(testTitle);
+    })
 });
