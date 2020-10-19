@@ -45,7 +45,7 @@ describe('<HomeScreen />', () => {
         expect(component.find(HomeScreen).state().data[0].title).toEqual(testTitle);
     })
 
-    it('Should add a new item to state.data on btn press', async () => {
+    it('Should clear state.data on alert OK', async () => {
         const component = mount(<HomeScreen/>)
         const testData = [ { id: 1, title: "Test"} ]
 
