@@ -2,10 +2,11 @@ import React from 'react';
 import renderer, { act } from 'react-test-renderer';
 import { mount } from 'enzyme'
 import { HomeScreen } from '../../src/components/HomeScreen';
-import { Input } from "../../src/styles/Main";
+import { Alert } from 'react-native';
 
 jest.mock('@react-navigation/native'); 
 jest.useFakeTimers()
+jest.spyOn(Alert, 'alert')
 
 describe('<HomeScreen />', () => {
     it('has 5 children', async () => {
@@ -41,5 +42,21 @@ describe('<HomeScreen />', () => {
             .onPress()
 
         expect(component.find(HomeScreen).state().data[0].title).toEqual(testTitle);
+    })
+
+    it('Should add a new item to state.data on btn press', async () => {
+        const component = mount(<HomeScreen/>)
+        const testData = [ { id: 1, title: "Test"} ]
+
+        component.setState({ data : testData })
+        
+        component
+            .find('#clear-data-btn')
+            .at(1)
+            .props()
+            .onPress()
+
+        Alert.alert.mock.calls[0][2][1].onPress()
+        expect(component.find(HomeScreen).state().data).toEqual([]);
     })
 });
