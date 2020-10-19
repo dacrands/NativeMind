@@ -98,4 +98,16 @@ describe('<HomeScreen />', () => {
 
         expect(window.alert).toHaveBeenCalled()
     })
+
+    it('Should alert trying to clear empty state.data', async () => {
+        const component = mount(<HomeScreen/>)
+
+        component
+            .find('#clear-data-btn')
+            .at(1)
+            .props()
+            .onPress()
+
+        expect(window.alert).toHaveBeenCalled()
+    })
 });
