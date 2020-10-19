@@ -136,6 +136,7 @@ export class HomeScreen extends React.Component {
           keyExtractor={(item) => item.id.toString()}
         />
         <BigBtn
+          id="store-list-btn"
           style={{
             alignItems: "center",
             marginTop: 10,
