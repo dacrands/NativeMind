@@ -65,7 +65,6 @@ describe('<HomeScreen />', () => {
         const testData = [ { id: "test", title: "Test"} ]
 
         component.setState({ data : testData })
-        component.update()
 
         component
             .find('#test')
