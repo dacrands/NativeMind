@@ -145,6 +145,7 @@ export class HomeScreen extends React.Component {
           <SubmitText>Save List</SubmitText>
         </BigBtn>
         <BigBtn
+          id="clear-data-btn"
           style={{ backgroundColor: "rgba(235, 184, 29, 0.9)" }}
           onPress={this.clearData}
         >
