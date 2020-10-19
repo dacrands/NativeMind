@@ -73,4 +73,16 @@ describe('<HomeScreen />', () => {
         
         expect(component.find(HomeScreen).state().data).toEqual([])
     })
+
+    it('Should alert if state.currItem is an empty string', async () => {
+        const component = mount(<HomeScreen/>)
+
+        component
+            .find('#add-item-btn')
+            .at(1)
+            .props()
+            .onPress()
+
+        expect(Alert.alert).toHaveBeenCalled()
+    })
 });
