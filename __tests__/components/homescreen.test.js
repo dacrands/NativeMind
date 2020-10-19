@@ -59,4 +59,19 @@ describe('<HomeScreen />', () => {
         Alert.alert.mock.calls[0][2][1].onPress()
         expect(component.find(HomeScreen).state().data).toEqual([]);
     })
+
+    it('Should remove an item by id', async () => {
+        const component = mount(<HomeScreen/>)
+        const testData = [ { id: "test", title: "Test"} ]
+
+        component.setState({ data : testData })
+        component.update()
+
+        component
+            .find('#test')
+            .props()
+            .removeItem('test')
+        
+        expect(component.find(HomeScreen).state().data).toEqual([])
+    })
 });
