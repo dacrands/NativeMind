@@ -61,6 +61,22 @@ describe('<HomeScreen />', () => {
         expect(component.find(HomeScreen).state().data).toEqual([]);
     })
 
+    it('Should not clear state.data on alert cancel', async () => {
+        const component = mount(<HomeScreen/>)
+        const testData = [ { id: 1, title: "Test"} ]
+
+        component.setState({ data : testData })
+        
+        component
+            .find('#clear-data-btn')
+            .at(1)
+            .props()
+            .onPress()
+
+        Alert.alert.mock.calls[0][2][0].onPress()
+        expect(component.find(HomeScreen).state().data).toEqual(testData);
+    })
+
     it('Should remove an item by id', async () => {
         const component = mount(<HomeScreen/>)
         const testData = [ { id: "test", title: "Test"} ]
