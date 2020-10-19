@@ -7,6 +7,7 @@ import { Alert } from 'react-native';
 jest.mock('@react-navigation/native'); 
 jest.useFakeTimers()
 jest.spyOn(Alert, 'alert')
+jest.spyOn(window, 'alert').mockImplementation(() => {});
 
 describe('<HomeScreen />', () => {
     it('has 5 children', async () => {
@@ -95,6 +96,6 @@ describe('<HomeScreen />', () => {
             .props()
             .onPress()
 
-        expect(Alert.alert).toHaveBeenCalled()
+        expect(window.alert).toHaveBeenCalled()
     })
 });
