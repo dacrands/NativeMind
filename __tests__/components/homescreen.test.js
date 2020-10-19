@@ -85,4 +85,16 @@ describe('<HomeScreen />', () => {
 
         expect(Alert.alert).toHaveBeenCalled()
     })
+
+    it('Should alert if state.data is empty', async () => {
+        const component = mount(<HomeScreen/>)
+
+        component
+            .find('#store-list-btn')
+            .at(1)
+            .props()
+            .onPress()
+
+        expect(Alert.alert).toHaveBeenCalled()
+    })
 });
