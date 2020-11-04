@@ -6,7 +6,8 @@
     "ios": "expo start --ios",
     "eject": "expo eject",
     "format": "prettier --write ./**/*.js",
-    "test": "jest"
+    "test": "jest",
+    "test-silent": "jest --silent"
   },
   "jest": {
     "preset": "jest-expo",
