@@ -1,3 +1,7 @@
+
+<a title="Latest push build on default branch: passed" name="status-images" class="pointer open-popup">
+    <img src="https://travis-ci.org/dacrands/NativeMind.svg?branch=master&amp;status=passed" alt="build:passed">
+  </a>
 <div align="center">
     <img width=180 alt="Gamsa App Logo" src ="./src/assets/icon.png" />
     <h1>Gamsa</h1>
