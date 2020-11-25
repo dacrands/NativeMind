@@ -6,7 +6,7 @@ import { Alert } from 'react-native';
 
 
 describe('<SavedLists />', () => {
-    it('has 1 children', async () => {
+    it('has 1 child', async () => {
         const tree = renderer.create(<SavedLists />).toJSON();
         await act(
             async () => {
