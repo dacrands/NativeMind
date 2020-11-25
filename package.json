@@ -8,7 +8,7 @@
     "format": "prettier --write ./**/*.js",
     "test": "jest",
     "test-silent": "jest --silent",
-    "coveralls": "jest --coverage && cat ./tests/coverage/lcov.info | coveralls"
+    "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls"
   },
   "jest": {
     "preset": "jest-expo",
