@@ -24,3 +24,4 @@ matrix:
       script:
         - yarn install
         - yarn test
+        - npm run coveralls
