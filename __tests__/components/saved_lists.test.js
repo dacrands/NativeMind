@@ -19,6 +19,26 @@ describe('<SavedLists />', () => {
         )
     });
 
+    it('Deletes a list by id', async () => {
+        const component = mount(<SavedLists/>)
+        const testList = [{
+            title: 'Test Title',
+            list: [ { id: 2, title: "Test"} ],
+            id: 1
+        }]
+
+        component.setState({ lists: testList })
+
+        component
+            .find(`#delete-list-${testList[0].id}-btn`)
+            .at(1)
+            .props()
+            .onPress()
+
+        Alert.alert.mock.calls[0][2][1].onPress()
+        expect(component.find(SavedLists).state().lists).toEqual([])
+    });
+
     it('Does not delete list if delete cancelled', async () => {
         const component = mount(<SavedLists/>)
         const testList = [{
@@ -38,4 +58,5 @@ describe('<SavedLists />', () => {
         Alert.alert.mock.calls[0][2][0].onPress()
         expect(component.find(SavedLists).state().lists).toEqual(testList)
     });
+
 })
