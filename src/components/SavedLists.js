@@ -84,6 +84,7 @@ const RenderLists = (props) => (
     />
     <BigBtn
       onPress={() => props.removeList(props.id)}
+      id = {`delete-list-${props.id}-btn`}
       style={{
         backgroundColor: "rgba(235, 184, 29, 0.9)",
         marginBottom: 0,
